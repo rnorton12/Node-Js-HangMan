@@ -1,0 +1,22 @@
+{
+  "name": "node-js-hangman",
+  "version": "1.0.0",
+  "description": "Assignment 9",
+  "main": "hangman.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnorton12/Node-Js-HangMan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnorton12/Node-Js-HangMan/issues"
+  },
+  "homepage": "https://github.com/rnorton12/Node-Js-HangMan#readme",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}
