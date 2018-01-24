@@ -1,5 +1,6 @@
 var gameWords = require("./game_words.js");
 var aLetter = require("./letter.js");
+var colors = require("colors/safe");
 
 var Word = function() {
     this.wordToSolve = "";
@@ -48,7 +49,7 @@ Word.prototype.getUnsolvedWord = function () {
             result += "_" + " ";
         }
     }
-    return result;
+    return colors.blue(result);
 }
 
 Word.prototype.isWordSolved = function() {

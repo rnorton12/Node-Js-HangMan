@@ -1,5 +1,19 @@
 var word = require("./word.js");
 var prompt = require('prompt');
+var colors = require("colors/safe");
+
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'green',
+    data: 'grey',
+    help: 'cyan',
+    warn: 'yellow',
+    debug: 'blue',
+    error: 'red'
+  });
 
 var theWord = new word();
 
@@ -9,8 +23,8 @@ var gameStats = {
     Losses: 0,
 
     printStats: function () {
-        console.log("Wins: " + this.Wins);
-        console.log("Losses: " + this.Losses);
+        console.log(colors.green("Wins: ") + colors.grey(this.Wins));
+        console.log(colors.red("Losses: ") + colors.grey(this.Losses));
     }
 };
 
@@ -32,11 +46,13 @@ function askForNewGame() {
         }
         console.log(result.yesno[0]);
         if (result.yesno[0].toLowerCase() === 'y') {
-            console.log("new game: " + "true");
-            return true;
+            console.log(colors.rainbow("Alright. Lets GO!"));
+            theWord.startTheGame();
+            console.log(theWord.getUnsolvedWord());
+            gameStats.guessesRemaining = 8;
+            askForLetter();
         } else {
-            console.log("new game: " + "false");
-            return false;
+            console.log(colors.rainbow("Thanks for Playing!"));
         }        
     });
 }
@@ -54,38 +70,27 @@ function askForLetter() {
         }
         if (theWord.checkGuessedLetter(result.letter[0])) {
             console.log(theWord.getUnsolvedWord());
-            console.log("CORRECT!");
+            console.log(colors.green("CORRECT!"));
             if (theWord.isWordSolved()) {
-                console.log("YOU WIN!");
+                console.log(colors.rainbow("YOU WIN!"));
                 gameStats.Wins++;
                 gameStats.printStats();
-               
-                if (askForNewGame() === true) {
-                    theWord.startTheGame();
-                    console.log(theWord.getUnsolvedWord());
-                    gameStats.guessesRemaining = 8;
-                }
-                console.log("outta here");
+                askForNewGame();
             } else {
                 askForLetter();
             }
         } else {
-            console.log("INCORRECT!");
+            console.log(colors.red("INCORRECT!"));
             console.log(theWord.getUnsolvedWord());
             gameStats.guessesRemaining--;
             console.log("Guesses Remaining: " + gameStats.guessesRemaining);
             if (gameStats.guessesRemaining) {
                 askForLetter();
             } else {
-                console.log("YOU LOST!");
+                console.log(colors.red("YOU LOST!"));
                 gameStats.Losses++;
                 gameStats.printStats();
-                
-                if (askForNewGame() === true) {
-                    theWord.startTheGame();
-                    console.log(theWord.getUnsolvedWord());
-                    gameStats.guessesRemaining = 8;
-                }
+                askForNewGame();
             }
         }
         
