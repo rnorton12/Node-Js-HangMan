@@ -18,8 +18,6 @@
   "homepage": "https://github.com/rnorton12/Node-Js-HangMan#readme",
   "dependencies": {
     "colors": "^1.1.2",
-    "promise": "^8.0.1",
-    "prompt": "^1.0.0",
-    "web-safe-colors": "^1.0.3"
+    "prompt": "^1.0.0"
   }
 }

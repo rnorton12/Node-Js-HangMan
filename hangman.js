@@ -2,19 +2,6 @@ var word = require("./word.js");
 var prompt = require('prompt');
 var colors = require("colors/safe");
 
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'grey',
-    info: 'green',
-    data: 'grey',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'blue',
-    error: 'red'
-  });
-
 var theWord = new word();
 
 var gameStats = {
